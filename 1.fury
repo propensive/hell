@@ -1,0 +1,58 @@
+#!/bin/sh
+# This is Fury file which describes how to build something. It can be started by
+# running fury in this directory, or just by executing this file in a shell.
+
+project rudiments
+  repo main https://github.com/propensive/rudiments
+    commit eb1e166693eb04f3e33ef4ec6a63734d4afd7a4c
+
+  module core
+    include  anticipation/file
+    source   main:src/core
+
+
+project anticipation
+  repo main https://github.com/propensive/anticipation
+    commit 36a5154b3f6079537f4aa5419814ef4f1c712e38
+
+  module file
+    source main:src/file
+
+  module time
+    source main:src/time
+
+  module http
+    source main:src/http
+
+  module html
+    source main:src/html
+
+  module uri
+    source main:src/uri
+
+project cardinality
+  repo main https://github.com/propensive/cardinality
+    commit c14599af28f327397b26211173cd59a21f73d0ef
+
+  module core
+    source   main:src/core
+
+project parasitism
+  repo main https://github.com/propensive/parasitism
+    commit 78f06517d1fffe4155fdc4764a19acfc26bec634
+
+  module core
+    include  rudiments/core anticipation/time
+    source   main:src/core
+
+project tetromino
+  repo main https://github.com/propensive/tetromino
+    commit d0a2a5b4200f56f931ea2fcb17075180c14baa2d
+
+  module core
+    include  parasitism/core
+    source   main:src/core
+
+project contextual
+  repo main https://github.com/propensive/contextual
+    commit 3a13f7b5d20b35d6d329c77bdb270568a7a97aeb
